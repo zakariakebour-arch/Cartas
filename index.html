@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cartas</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        :root{
+            --color-suave: gainsboro;
+        }
+        body{
+            min-height: 100vh;
+            background: linear-gradient(320deg,black,red)
+        }
+        #padre{
+           height: auto;
+           width: auto;
+           display: grid;
+           grid-template-columns: repeat(8,1fr);
+           gap: 10px;
+           padding: 10px;    
+           margin-top: 150px;
+        }
+        #contenedor{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            position: absolute;
+            top: 10px;
+            left: 50%;
+            transform: translate(-50%);
+        }
+        button{
+            background: linear-gradient(320deg,red,orange,pink);
+            border: none;
+            cursor: pointer;
+            padding: 10px;
+            border-radius: 10px;
+        }
+        input{
+            padding: 10px;
+            border: none;
+            box-shadow: 2px 2px 10px var(--color-suave);
+            font-weight: bold;
+        }
+        #imagen{
+            width: 120px;
+            height: 120px;
+            object-fit: cover;
+            border-radius: 10px;
+            box-shadow: 2px 2px 10px var(--color-suave);
+        }
+        .editar{
+            box-shadow: 2px 2px 10px rgb(73, 73, 73);
+            max-width: 200px;
+            padding: 15px;
+            border-radius: 10px;
+            font-weight: bold;
+            text-shadow: 2px 2px 10px black;
+            text-align: center;
+        }
+        .editar:hover{
+            cursor: pointer;
+            transform: scale(1.1);
+            transition: 0.5s ease;
+        }
+    </style>
+</head>
+<body>
+    <div id="contenedor">
+        <input type="number" id="valor">
+        <button>Crear tarjetas</button>
+    </div>
+    <div id="padre">
+
+    </div>
+    <script>
+        const numero = document.getElementById("valor");
+        const contenedor_padre = document.getElementById("padre");
+        const boton = document.querySelector("button");
+        boton.addEventListener("click",()=>{
+            for(let i=0;i<numero.value;i++){
+                let tarjeta = document.createElement("div");
+                contenedor_padre.appendChild(tarjeta);
+                tarjeta.innerHTML = `
+                    <h2>Shanks</h2>
+                    <p>emperador del mar</p>
+                    <img id="imagen" src="el-episodio-1112-del-anime-de-one-piece-desata-el-verdadero-poder-de-shanks.jpg" alt="">
+                `;
+                tarjeta.classList.add("editar");
+                tarjeta.addEventListener("click",()=>{
+                    contenedor_padre.removeChild(tarjeta);
+                });
+            }
+            numero.value = "";
+        });
+    </script>
+</body>
+</html>
