@@ -86,7 +86,11 @@
         const contenedor_padre = document.getElementById("padre");
         const boton = document.querySelector("button");
         boton.addEventListener("click",()=>{
-            for(let i=0;i<numero.value;i++){
+            if(numero.value >100){
+                alert("No se puede asignar un valor mayor que 100");
+                numero.value = "";
+            }else{
+                for(let i=0;i<numero.value;i++){
                 let tarjeta = document.createElement("div");
                 contenedor_padre.appendChild(tarjeta);
                 tarjeta.innerHTML = `
@@ -100,6 +104,7 @@
                 });
             }
             numero.value = "";
+            }
         });
     </script>
 </body>
